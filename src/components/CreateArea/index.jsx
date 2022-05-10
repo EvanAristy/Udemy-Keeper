@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CreateArea = () => {
+const CreateArea = (props) => {
     const [note, setNote] = useState({
         title: "",
         content: ""
