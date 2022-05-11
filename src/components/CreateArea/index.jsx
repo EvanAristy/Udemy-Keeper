@@ -10,6 +10,8 @@ const CreateArea = (props) => {
         content: ""
     })
 
+    const [expand, setExpand] = useState(false)
+
     function handleChange(e) {
         const { name, value } = e.target;
 
@@ -30,27 +32,47 @@ const CreateArea = (props) => {
         })
     }
 
+    function handleClick(){
+        setExpand(true)
+    }
+
     return (
         <div>
-            <form className="create-note">
-                <input
-                    name="title"
-                    onChange={handleChange}
-                    value={note.title}
-                    placeholder="Title"
-                />
-                <textarea
-                    name="content"
-                    onChange={handleChange}
-                    value={note.content}
-                    placeholder="Take a note..."
-                    rows="3"
-                />
-                <Zoom in={true}>
-                    <Fab onClick={submitNote}>
-                        <AddIcon />
-                    </Fab>
-                </Zoom>
+            <form onClick={handleClick} className="create-note">
+                
+                {
+                    expand
+                    ? 
+                    <div>
+                        <input
+                            name="title"
+                            onChange={handleChange}
+                            value={note.title}
+                            placeholder="Title"
+                        />
+                        <textarea
+                            name="content"
+                            onChange={handleChange}
+                            value={note.content}
+                            placeholder="Take a note..."
+                            rows="3"
+                        />
+                        <Zoom in={true}>
+                            <Fab onClick={submitNote}>
+                                <AddIcon />
+                            </Fab>
+                        </Zoom>
+                    </div>
+                    : 
+                    <textarea
+                        name="content"
+                        onChange={handleChange}
+                        value={note.content}
+                        placeholder="Take a note..."
+                        rows="1"
+                    />
+                }
+                                
             </form>
         </div>
     );
